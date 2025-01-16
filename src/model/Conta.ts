@@ -1,5 +1,5 @@
-import { NegocioError } from "../Error/NegocioError";
-import { NumeroConta } from "./NumeroConta";
+import { NegocioErro } from '../Error/NegocioError';
+import { NumeroConta } from './NumeroConta';
 
 export class Conta {
     private _numeroConta: NumeroConta;
@@ -7,7 +7,7 @@ export class Conta {
 
     private validarValor(valor: number): void {
         if(valor <= 0)
-            throw new NegocioError("numero de conta invalido");
+            throw new NegocioErro("valor nao pode ser igual ou menor que zero");
     }
 
     public constructor(numero: string, saldo: number) {
@@ -15,22 +15,26 @@ export class Conta {
         this._saldo = saldo;
     }
 
-    public sacar(valor: number): void {
+    public sacar(valor: number): void{
         this.validarValor(valor);
 
-        if((this._saldo -valor) < 0)
-            throw new NegocioError("Saldo indisponivel para operacao");
+        if((this._saldo - valor) < 0)
+            throw new NegocioErro("saldo indisponivel para operacao");
 
         this._saldo -= valor;
     }
 
-    public depositar(valor: number): void {
+    public depositar(valor: number): void{
         this.validarValor(valor);
-        
+
         this._saldo += valor;
     }
 
-    public get saldo(): number {
+    public get saldo() : number {
         return this._saldo;
+    }
+
+    public get numero(): string {
+        return this._numeroConta.numero;
     }
 }

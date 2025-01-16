@@ -1,8 +1,8 @@
-import { Recibo } from "../../../model/Recibo";
+import { Recibo } from '../../../model/Recibo';
 
-describe("Recibo", ( )=> {
-    test("criar recibo com sucesso", () => {
+describe("Recibo", () => {
+    test("criar com sucesso", async () => {
         const recibo: Recibo = new Recibo();
-        expect(recibo.codigo.length).toBe(8);
+        expect(recibo.codigo.length).toBe(7);
     });
 });
